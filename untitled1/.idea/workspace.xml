@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c09086b8-33b2-4039-931b-d23f954b9ed4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/untitled1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/untitled1.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/3dGANTest.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/3dGANTest.ipynb" afterDir="false" />
     </list>
@@ -27,7 +29,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.notebooks.jupyter.connections.configuration.JupyterServerConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -89,6 +91,8 @@
       <workItem from="1568238388938" duration="7470000" />
       <workItem from="1568245892435" duration="49505000" />
       <workItem from="1568832440155" duration="2863000" />
+      <workItem from="1568837237104" duration="874000" />
+      <workItem from="1568838134538" duration="1100000" />
     </task>
     <servers />
   </component>
