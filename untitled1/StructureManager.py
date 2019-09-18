@@ -4,16 +4,13 @@ import sys
 import nbtlib
 from nbtlib import File
 from nbtlib.tag import *
-from nbtlib import parse_nbt
-#from nbtlib import serialize_tag
-from nbtlib import CompoundSchema
 from nbtlib import schema
 import numpy as np
 
 globalPalette = []
-schemX = 4
-schemY = 8
-schemZ = 4
+schemX = 16
+schemY = 16
+schemZ = 16
 
 Structure = schema('Structure', {
     'DataVersion': Int,
@@ -45,15 +42,13 @@ class StructureFile(File, schema('StructureFileSchema', {'': Structure})):
         return super().load(filename, gzipped)
 
 
-#def generate_structure(author, size, palette,):
-
 def load_structure_data(structurePath, data):
     nbt_file = nbtlib.load(structurePath)
     nbt_data = nbt_file.root[data]
 
 
-def load_structure_blocks(structurePaths):
-
+def load_structure_blocks(structurePaths, sizes):
+    schemX, schemY, schemZ = sizes
     structPaths = os.listdir(structurePaths)
     structures = []
     for path in structPaths:
@@ -67,7 +62,6 @@ def load_structure_blocks(structurePaths):
             if key not in globalPalette:
                 globalPalette.append(key)
 
-
         outputArr = np.zeros((len(structures), schemX, schemY, schemZ))
     for i in range(len(structures)):
         nbt_file = structures[i]
@@ -80,11 +74,6 @@ def load_structure_blocks(structurePaths):
                              block['pos'][2]] = convert_palette(block['state'], nbt_palette, globalPalette)
 
         outputArr[i] = converted_blocks
-        """
-    f = open('palettes/globalPalette.txt', 'w+')
-    print(globalPalette)
-    for element in globalPalette:
-        f.writelines(element['Name'] + '\n')"""
     return outputArr
 
 
@@ -95,34 +84,30 @@ def convert_palette(block_state, original_palette, new_palette):
 def create_nbt_from_3d(blocks, epoch):
     globalDict = (nbtlib.tag.List)(globalPalette)
     blockArr = []
-    for structure in blocks:
-        for i in range(schemX):
-            for j in range(schemY):
-                for k in range(schemZ):
-                    block = {
-                        'state': structure[i, j, k],
-                        'pos': [i, j, k]
-                    }
-                    blockArr.append(block)
+    for i in range(schemX):
+        for j in range(schemY):
+            for k in range(schemZ):
+                block = {
+                    'state': blocks[i, j, k],
+                    'pos': [i, j, k]
+                }
+                blockArr.append(block)
 
-        new_structure = Structure({
-            'DataVersion': 1139,
-            'author': 'danny',
-            'size': [schemX, schemY, schemZ],
-            'palette': globalDict,
-            'blocks': blockArr,
-            'entities': [],
-        })
-
-        structure_file = StructureFile(new_structure)
-        structure_file.save("schem{}.nbt".format(epoch))
-
+    new_structure = Structure({
+        'DataVersion': 1139,
+        'author': 'danny',
+        'size': [schemX, schemY, schemZ],
+        'palette': globalDict,
+        'blocks': blockArr,
+        'entities': [],
+    })
+    structure_file = StructureFile(new_structure)
+    structure_file.save('schem{}-{}.nbt'.format(epoch, 0))
 
 
 def load_test_set(filepath):
     nbt_file = nbtlib.load(filepath)
     return nbt_file.root['blocks']
 
-#structfiles = ['input_nbt_files/birchcottage.nbt', 'input_nbt_files/cottage.nbt', 'input_nbt_files/workshop.nbt']
-
-#create_nbt_from_3d(load_structure_blocks(structfiles), 'output_nbt_files/schem')
+def get_scalar():
+    return len(globalPalette)
