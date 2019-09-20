@@ -4,9 +4,9 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation, K, Lambda, Layer, Multiply, Add
 
 original_dim = 4096
-intermediate_dim = 256
-latent_dim = 2
-batch_size = 100
+intermediate_dim = 1024
+latent_dim = 3
+batch_size = 2
 epochs = 50
 epsilon_std = 1.0
 
@@ -66,7 +66,7 @@ vae.compile(optimizer='rmsprop', loss=nll)
 
 # train the VAE on MNIST digits
 '''
-(x_train, y_train), (x_test, y_test) = mnist.load_data()
+(x_train, y_train), (x_test, y_test) = 
 x_train = x_train.reshape(-1, original_dim) / 255.
 x_test = x_test.reshape(-1, original_dim) / 255.
 '''
