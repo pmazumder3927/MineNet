@@ -8,13 +8,13 @@ class VAE3D:
         tf.reset_default_graph()
 
         # Define parameters of the encoder
-        self.input_dim = (16, 16, 16, 1)
+        self.input_dim = (32, 32, 32, 1)
 
         # Dimension of the sub-networks.]
         self.latent_dim = latent_dim
-        self.generator_dim = [256, 64, 32, 1]
-        self.discriminator_dim = [32, 64, 256, self.latent_dim]
-        self.batchsize = 2
+        self.generator_dim = [512, 256, 64, 1]
+        self.discriminator_dim = [64, 256, 512, self.latent_dim]
+        self.batchsize = 4
 
         # Activation function is tf.nn.elu
         self.gen_fn = tf.nn.relu
@@ -26,7 +26,7 @@ class VAE3D:
         self._dropout = 1.0
         self.training = True
 
-        # Build netowrk
+        # Build network
         self.built = False
         self.sesh = tf.Session()
         self.e = 0
