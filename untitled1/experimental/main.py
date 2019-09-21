@@ -13,23 +13,31 @@ import scipy.ndimage as nd
 import scipy.io as io
 import numpy as np
 import matplotlib.pyplot as plt
-#import skimage.measure as sk
+# import skimage.measure as sk
 
 from mpl_toolkits import mplot3d
-
-X = util.getAll("chair")
+scalar = 1
+epochs = 500;
+dataset_list = sm.load_structure_blocks('C:\\Users\\Danny\\Documents\\structures32', [32, 32, 32])
+X = np.subtract(np.multiply(np.divide(dataset_list, scalar),2),1)
 X = np.expand_dims(X.astype(float), 4)
-
 bf = util.BatchFeeder(X, 32)
+util.plotVoxel(bf.next()[0], size=(3, 3))
 
-util.plotVoxel(bf.next()[0], size=(3,3))
 
 model = vae3d.VAE3D(latent_dim=50)
+model.train(bf, epochs + 1)
 
-model.train(bf, 50)
+
+def generate_and_save_structures(model, epoch, test_input):
+    predictions = model(test_input, training=False)
+    processed_predictions = np.divide(np.multiply(np.add(predictions, 1), scalar), 2)
+    processed_predictions = processed_predictions.astype(int)
+    processed_predictions = processed_predictions[1,:,:,:]
+    print(len(processed_predictions[processed_predictions < 0]))
+    sm.create_nbt_from_3d(processed_predictions, epoch)
 
 
-#Learning curve
 
 kld = []
 rec = []
@@ -37,24 +45,24 @@ for e in range(len(model.learning_curve)):
     kld.append(np.mean(model.learning_curve[e]["kld"]))
     rec.append(np.mean(model.learning_curve[e]["rec"]))
 
+plt.figure(figsize=(8, 2))
 
-plt.figure(figsize=(8,2))
-
-plt.subplot(1,2,1)
+plt.subplot(1, 2, 1)
 plt.plot(kld)
 plt.title("KL-divergence")
 plt.xlabel("epochs")
-#plt.yscale("log")
+# plt.yscale("log")
 
-plt.subplot(1,2,2)
+plt.subplot(1, 2, 2)
 plt.plot(rec)
 plt.title("Reconstruction Error")
 plt.xlabel("epochs")
-#plt.yscale("log")
+# plt.yscale("log")
 
 plt.show()
 
-def getplotable(d, th = 0.5, size=(6,6)):
+
+def getplotable(d, th=0.5, size=(6, 6)):
     temp = []
     bina = d > th
     for i in range(d.shape[0]):
@@ -66,6 +74,7 @@ def getplotable(d, th = 0.5, size=(6,6)):
     return temp
 
 
+'''
 index1 = np.random.randint(10000)
 x1 = model.record["reconstructed"][index1]
 z1 = model.record["z"][index1]
@@ -74,8 +83,10 @@ index2 = np.random.randint(10000)
 x2 = model.record["reconstructed"][index2]
 z2 = model.record["z"][index2]
 
+
 print
 index1, index2
+
 
 vecs = util.interp(z1, z2, 9)
 
@@ -98,5 +109,5 @@ for i in range(len(vecs)):
     ax.set_yticks([], [])
     ax.set_zticks([], [])
 plt.savefig("figure/vae3d/" + str(index1) + "_" + str(index2) + ".png")
-sm.create_nbt_from_3d('untitled1/experimental/output', _out)
 plt.show()
+'''

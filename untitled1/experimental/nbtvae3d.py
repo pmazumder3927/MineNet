@@ -1,5 +1,6 @@
 import tensorflow as tf
 import numpy as np
+import untitled1.StructureManager as sm
 
 
 class VAE3D:
@@ -168,6 +169,7 @@ class VAE3D:
                                                 activation=None)
             layer4 = tf.contrib.layers.batch_norm(layer4, is_training=bn)
             layer4 = tf.nn.sigmoid(layer4)
+            print(layer4[0])
 
             return layer4
 
@@ -223,6 +225,16 @@ class VAE3D:
                 epoch_cost["kld"].append(np.mean(kld))
                 epoch_cost["rec"].append(np.mean(rec))
                 epoch_cost["cost"].append(cost)
+
+                #print(reconstruction)
+                print(self.record['reconstructed'])
+                print('training epoch ' + str(e))
+                if e % 10 == 0:
+                    processed_predictions = np.divide(np.multiply(np.add(reconstruction, 1), len(sm.globalPalette)), 2)
+                    processed_predictions = processed_predictions.astype(int)
+                    processed_predictions = processed_predictions[1,:,:,:]
+                    #print(processed_predictions.shape)
+                    sm.create_nbt_from_3d(processed_predictions, e)
 
             if valid != None:
                 for i in range(val_batch_num):

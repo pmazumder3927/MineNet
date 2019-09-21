@@ -73,6 +73,17 @@ def load_structure_blocks(structurePaths, sizes):
                              block['pos'][1],
                              block['pos'][2]] = convert_palette(block['state'], nbt_palette, globalPalette)
 
+        f = open('palettes/globalPalette.txt', 'w+')
+        print(globalPalette)
+        for element in globalPalette:
+            try:
+                element['Properties']
+            except KeyError:
+                prop = 'no properties'
+            else:
+                prop = str(element['Properties'])
+
+            f.writelines(element['Name'] + ' ' + prop + '\n')
         outputArr[i] = converted_blocks
     return outputArr
 
@@ -82,7 +93,7 @@ def convert_palette(block_state, original_palette, new_palette):
 
 
 def create_nbt_from_3d(blocks, epoch):
-    globalDict = (nbtlib.tag.List)(globalPalette)
+    globalDict = nbtlib.tag.List(globalPalette)
     blockArr = []
     for i in range(schemX):
         for j in range(schemY):
@@ -102,7 +113,7 @@ def create_nbt_from_3d(blocks, epoch):
         'entities': [],
     })
     structure_file = StructureFile(new_structure)
-    structure_file.save('schem{}-{}.nbt'.format(epoch, 0))
+    structure_file.save('output/schem{}-{}.nbt'.format(epoch, 0))
 
 
 def load_test_set(filepath):

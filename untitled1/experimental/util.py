@@ -2,6 +2,7 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import untitled1.StructureManager as sm
 
 import sys
 import os
@@ -10,8 +11,6 @@ import scipy.ndimage as nd
 import scipy.io as io
 import numpy as np
 import matplotlib.pyplot as plt
-import untitled1.StructureManager as sm
-#import skimage.measure as sk
 
 from mpl_toolkits import mplot3d
 
@@ -57,13 +56,13 @@ def getVoxelFromMat(path, cube_len=64):
 
 
 def getAll(obj='airplane', train=True, is_local=False, cube_len=32, obj_ratio=1.0):
-    '''objPath = "data/3DShapeNets/volumetric_data/" + obj + '/30/'
-    objPath += 'train/' if train else 'test/'
-    fileList = [f for f in os.listdir(objPath) if f.endswith('.mat')]
-    fileList = fileList[0:int(obj_ratio * len(fileList))]
-    volumeBatch = np.asarray([getVoxelFromMat(objPath + f, cube_len) for f in fileList], dtype=np.bool)'''
-    volumeBatch = sm.load_structure_blocks('C:\\Users\\Danny\\Documents\\structures32',
-                                           [32, 32, 32]) / len(sm.globalPalette)
+    #objPath = "data/3DShapeNets/volumetric_data/" + obj + '/30/'
+    #objPath += 'train/' if train else 'test/'
+    #fileList = [f for f in os.listdir(objPath) if f.endswith('.mat')]
+    #fileList = fileList[0:int(obj_ratio * len(fileList))]
+    #volumeBatch = np.asarray([getVoxelFromMat(objPath + f, cube_len) for f in fileList], dtype=np.bool)
+    dataset_list = sm.load_structure_blocks('C:\\Users\\Danny\\Documents\\structures32', [32, 32, 32])
+    volumeBatch = np.subtract(np.multiply(np.divide(dataset_list, 1), 2), 1)
     return volumeBatch
 
 
