@@ -4,8 +4,8 @@ import untitled1.StructureManager as sm
 import matplotlib.pyplot as plt
 import untitled1.experimental.util as util
 
-input_dir = 'platformTest'
-epochs = 500;
+input_dir = 'structures32'
+epochs = 1500;
 globalPalette = sm.fill_palette(input_dir)
 dataset_list = sm.load_structure_blocks(input_dir, [32, 32, 32], globalPalette)
 input_scalar = 1#len(globalPalette)
@@ -23,7 +23,7 @@ class VAE3D:
         self.latent_dim = latent_dim
         self.generator_dim = [512, 256, 64, 1]
         self.discriminator_dim = [64, 256, 512, self.latent_dim]
-        self.batchsize = 1
+        self.batchsize = 4
 
         # Activation function is tf.nn.elu
         self.gen_fn = tf.nn.relu
