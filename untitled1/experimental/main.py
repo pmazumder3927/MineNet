@@ -16,22 +16,26 @@ import matplotlib.pyplot as plt
 # import skimage.measure as sk
 
 from mpl_toolkits import mplot3d
-
-epochs = 1500;
-dataset_list = sm.load_structure_blocks('structures32', [32, 32, 32], pal.globalPalette)
-
-
 scalar = 1
-
-
+epochs = 500;
+dataset_list = sm.load_structure_blocks('C:\\Users\\Danny\\Documents\\structures32', [32, 32, 32])
 X = np.subtract(np.multiply(np.divide(dataset_list, scalar),2),1)
 X = np.expand_dims(X.astype(float), 4)
 bf = util.BatchFeeder(X, 32)
-#util.plotVoxel(bf.next()[0], size=(3, 3))
+util.plotVoxel(bf.next()[0], size=(3, 3))
 
 
 model = vae3d.VAE3D(latent_dim=50)
 model.train(bf, epochs + 1)
+
+
+def generate_and_save_structures(model, epoch, test_input):
+    predictions = model(test_input, training=False)
+    processed_predictions = np.divide(np.multiply(np.add(predictions, 1), scalar), 2)
+    processed_predictions = processed_predictions.astype(int)
+    processed_predictions = processed_predictions[1,:,:,:]
+    print(len(processed_predictions[processed_predictions < 0]))
+    sm.create_nbt_from_3d(processed_predictions, epoch)
 
 
 
@@ -57,6 +61,17 @@ plt.xlabel("epochs")
 
 plt.show()
 
+
+def getplotable(d, th=0.5, size=(6, 6)):
+    temp = []
+    bina = d > th
+    for i in range(d.shape[0]):
+        for j in range(d.shape[1]):
+            for k in range(d.shape[2]):
+                if bina[i, j, k]:
+                    temp.append([i, j, k])
+    temp = np.array(temp)
+    return temp
 
 
 '''
