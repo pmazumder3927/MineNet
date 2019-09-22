@@ -1,6 +1,14 @@
 import tensorflow as tf
 import numpy as np
 import untitled1.StructureManager as sm
+import matplotlib.pyplot as plt
+import untitled1.experimental.util as util
+
+input_dir = 'platformTest'
+epochs = 500;
+globalPalette = sm.fill_palette(input_dir)
+dataset_list = sm.load_structure_blocks(input_dir, [32, 32, 32], globalPalette)
+input_scalar = 1#len(globalPalette)
 
 
 class VAE3D:
@@ -15,7 +23,7 @@ class VAE3D:
         self.latent_dim = latent_dim
         self.generator_dim = [512, 256, 64, 1]
         self.discriminator_dim = [64, 256, 512, self.latent_dim]
-        self.batchsize = 4
+        self.batchsize = 1
 
         # Activation function is tf.nn.elu
         self.gen_fn = tf.nn.relu
@@ -23,7 +31,7 @@ class VAE3D:
 
         # Other parameters
         self._lambda = 0.0
-        self.learning_rate = 0.001
+        self.learning_rate = 0.0001
         self._dropout = 1.0
         self.training = True
 
@@ -169,7 +177,6 @@ class VAE3D:
                                                 activation=None)
             layer4 = tf.contrib.layers.batch_norm(layer4, is_training=bn)
             layer4 = tf.nn.sigmoid(layer4)
-            print(layer4[0])
 
             return layer4
 
@@ -227,14 +234,26 @@ class VAE3D:
                 epoch_cost["cost"].append(cost)
 
                 #print(reconstruction)
-                print(self.record['reconstructed'])
+                #print(self.record['reconstructed'])
                 print('training epoch ' + str(e))
-                if e % 10 == 0:
-                    processed_predictions = np.divide(np.multiply(np.add(reconstruction, 1), len(sm.globalPalette)), 2)
+                if e % 100 == 0:
+                    output_scalar = len(globalPalette)
+                    processed_predictions = np.around(np.divide(np.multiply(np.add(reconstruction, 1), output_scalar), 2))
                     processed_predictions = processed_predictions.astype(int)
-                    processed_predictions = processed_predictions[1,:,:,:]
+                    output = processed_predictions[0,:,:,:]
                     #print(processed_predictions.shape)
-                    sm.create_nbt_from_3d(processed_predictions, e)
+                    sm.create_nbt_from_3d(output, e, globalPalette)
+                    '''if e % 1000 == 0:
+                        output = processed_predictions[0,:,:,:]
+                        sm.create_nbt_from_3d(output, e + 1)
+                        output = processed_predictions[2, :, :, :]
+                        sm.create_nbt_from_3d(output, e + 2)
+                        output = processed_predictions[3, :, :, :]
+                        sm.create_nbt_from_3d(output, e + 3)'''
+                    if e % 100 == 0:
+                        plot = output[:, :, 16, 0]
+                        plt.imshow(plot)
+                        plt.show()
 
             if valid != None:
                 for i in range(val_batch_num):
@@ -264,3 +283,37 @@ class VAE3D:
         if zs is not None:
             feed_dict = {self.ops["latent_input"]: zs, self.ops["bn"]: False}
         return self.sesh.run(self.ops["reconstructed_"], feed_dict)
+
+
+X = np.subtract(np.multiply(np.divide(dataset_list, input_scalar), 2), 1)
+X = np.expand_dims(X.astype(float), 4)
+bf = util.BatchFeeder(X, 32)
+#util.plotVoxel(bf.next()[0], size=(3, 3))
+
+
+model = VAE3D(latent_dim=50)
+model.train(bf, epochs + 1)
+
+
+
+kld = []
+rec = []
+for e in range(len(model.learning_curve)):
+    kld.append(np.mean(model.learning_curve[e]["kld"]))
+    rec.append(np.mean(model.learning_curve[e]["rec"]))
+
+plt.figure(figsize=(8, 2))
+
+plt.subplot(1, 2, 1)
+plt.plot(kld)
+plt.title("KL-divergence")
+plt.xlabel("epochs")
+# plt.yscale("log")
+
+plt.subplot(1, 2, 2)
+plt.plot(rec)
+plt.title("Reconstruction Error")
+plt.xlabel("epochs")
+# plt.yscale("log")
+
+plt.show()

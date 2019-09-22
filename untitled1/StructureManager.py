@@ -7,11 +7,9 @@ from nbtlib.tag import *
 from nbtlib import schema
 import numpy as np
 
-globalPalette = []
-schemX = 16
-schemY = 16
-schemZ = 16
-
+schemX = 32
+schemY = 32
+schemZ = 32
 Structure = schema('Structure', {
     'DataVersion': Int,
     'author': String,
@@ -46,11 +44,10 @@ def load_structure_data(structurePath, data):
     nbt_file = nbtlib.load(structurePath)
     nbt_data = nbt_file.root[data]
 
-
-def load_structure_blocks(structurePaths, sizes):
-    schemX, schemY, schemZ = sizes
+def fill_palette(structurePaths):
     structPaths = os.listdir(structurePaths)
     structures = []
+    localPalette = []
     for path in structPaths:
         structures.append(nbtlib.load(structurePaths + '/' + path))
 
@@ -59,8 +56,21 @@ def load_structure_blocks(structurePaths, sizes):
         nbt_palette = nbt_file.root['palette']
         #print(nbt_file)
         for key in nbt_palette:
-            if key not in globalPalette:
-                globalPalette.append(key)
+            if key not in localPalette:
+                localPalette.append(key)
+
+
+    return localPalette
+
+
+def load_structure_blocks(structurePaths, sizes, palette):
+    schemX, schemY, schemZ = sizes
+    structPaths = os.listdir(structurePaths)
+    structures = []
+    for path in structPaths:
+        structures.append(nbtlib.load(structurePaths + '/' + path))
+
+
 
         outputArr = np.zeros((len(structures), schemX, schemY, schemZ))
     for i in range(len(structures)):
@@ -71,11 +81,11 @@ def load_structure_blocks(structurePaths, sizes):
         for block in nbt_data:
             converted_blocks[block['pos'][0],
                              block['pos'][1],
-                             block['pos'][2]] = convert_palette(block['state'], nbt_palette, globalPalette)
+                             block['pos'][2]] = convert_palette(block['state'], nbt_palette, palette)
 
         f = open('palettes/globalPalette.txt', 'w+')
-        print(globalPalette)
-        for element in globalPalette:
+        print(palette)
+        for element in palette:
             try:
                 element['Properties']
             except KeyError:
@@ -92,8 +102,7 @@ def convert_palette(block_state, original_palette, new_palette):
     return new_palette.index(original_palette[block_state])
 
 
-def create_nbt_from_3d(blocks, epoch):
-    globalDict = nbtlib.tag.List(globalPalette)
+def create_nbt_from_3d(blocks, epoch, palette):
     blockArr = []
     for i in range(schemX):
         for j in range(schemY):
@@ -103,22 +112,14 @@ def create_nbt_from_3d(blocks, epoch):
                     'pos': [i, j, k]
                 }
                 blockArr.append(block)
-
     new_structure = Structure({
         'DataVersion': 1139,
         'author': 'danny',
         'size': [schemX, schemY, schemZ],
-        'palette': globalDict,
+        'palette': palette,
         'blocks': blockArr,
         'entities': [],
     })
     structure_file = StructureFile(new_structure)
     structure_file.save('output/schem{}-{}.nbt'.format(epoch, 0))
 
-
-def load_test_set(filepath):
-    nbt_file = nbtlib.load(filepath)
-    return nbt_file.root['blocks']
-
-def get_scalar():
-    return len(globalPalette)

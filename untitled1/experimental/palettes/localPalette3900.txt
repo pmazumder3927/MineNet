@@ -1,0 +1,128 @@
+minecraft:stripped_oak_log {axis: "x"}
+minecraft:oak_log {axis: "y"}
+minecraft:oak_planks no properties
+minecraft:stone_brick_slab {waterlogged: "false", type: "double"}
+minecraft:redstone_lamp {lit: "false"}
+minecraft:stone_bricks no properties
+minecraft:cobblestone no properties
+minecraft:stripped_oak_log {axis: "z"}
+minecraft:crafting_table no properties
+minecraft:stripped_oak_log {axis: "y"}
+minecraft:campfire {waterlogged: "false", signal_fire: "false", lit: "true", facing: "north"}
+minecraft:brewing_stand {has_bottle_0: "false", has_bottle_1: "false", has_bottle_2: "false"}
+minecraft:air no properties
+minecraft:oak_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "east"}
+minecraft:oak_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "west"}
+minecraft:cobblestone_wall {east: "false", waterlogged: "false", south: "true", north: "false", west: "false", up: "true"}
+minecraft:flower_pot no properties
+minecraft:stone_brick_slab {waterlogged: "false", type: "top"}
+minecraft:stone_brick_slab {waterlogged: "false", type: "bottom"}
+minecraft:oak_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "north"}
+minecraft:glass_pane {east: "true", waterlogged: "false", south: "false", north: "false", west: "true"}
+minecraft:oak_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "south"}
+minecraft:cobblestone_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "south"}
+minecraft:cobblestone_wall {east: "true", waterlogged: "false", south: "false", north: "false", west: "false", up: "true"}
+minecraft:cobblestone_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "west"}
+minecraft:oak_stairs {half: "top", waterlogged: "false", shape: "outer_left", facing: "south"}
+minecraft:lever {face: "wall", powered: "false", facing: "south"}
+minecraft:oak_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "west"}
+minecraft:iron_bars {east: "true", waterlogged: "false", south: "true", north: "true", west: "false"}
+minecraft:glass_pane {east: "false", waterlogged: "false", south: "true", north: "true", west: "false"}
+minecraft:cobblestone_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "east"}
+minecraft:cobblestone_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "east"}
+minecraft:cobblestone_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "west"}
+minecraft:cobblestone_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "north"}
+minecraft:oak_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "north"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "outer_right", facing: "south"}
+minecraft:oak_stairs {half: "top", waterlogged: "false", shape: "outer_right", facing: "north"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "west"}
+minecraft:spruce_door {hinge: "right", half: "lower", powered: "false", facing: "west", open: "true"}
+minecraft:spruce_door {hinge: "right", half: "upper", powered: "false", facing: "west", open: "true"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "inner_right", facing: "south"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "south"}
+minecraft:lever {face: "wall", powered: "false", facing: "north"}
+minecraft:cobblestone_wall {east: "true", waterlogged: "false", south: "false", north: "true", west: "false", up: "true"}
+minecraft:cobblestone_wall {east: "false", waterlogged: "false", south: "false", north: "true", west: "true", up: "true"}
+minecraft:cobblestone_wall {east: "false", waterlogged: "false", south: "false", north: "true", west: "false", up: "true"}
+minecraft:smooth_stone_slab {waterlogged: "false", type: "double"}
+minecraft:white_concrete no properties
+minecraft:light_gray_concrete no properties
+minecraft:smooth_stone no properties
+minecraft:light_blue_stained_glass no properties
+minecraft:black_stained_glass no properties
+minecraft:light_gray_stained_glass no properties
+minecraft:white_stained_glass no properties
+minecraft:bookshelf no properties
+minecraft:jukebox {has_record: "false"}
+minecraft:enchanting_table no properties
+minecraft:smooth_stone_slab {waterlogged: "false", type: "bottom"}
+minecraft:smooth_stone_slab {waterlogged: "false", type: "top"}
+minecraft:potted_red_tulip no properties
+minecraft:water {level: "0"}
+minecraft:stone_brick_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "south"}
+minecraft:stone_brick_stairs {half: "bottom", waterlogged: "false", shape: "inner_right", facing: "east"}
+minecraft:stone_brick_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "east"}
+minecraft:spruce_leaves {distance: "7", persistent: "true"}
+minecraft:gray_concrete no properties
+minecraft:smooth_quartz no properties
+minecraft:spruce_log {axis: "y"}
+minecraft:black_stained_glass_pane {east: "true", waterlogged: "false", south: "false", north: "false", west: "true"}
+minecraft:potted_blue_orchid no properties
+minecraft:smooth_quartz_stairs {half: "bottom", waterlogged: "false", shape: "outer_left", facing: "south"}
+minecraft:smooth_quartz_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "south"}
+minecraft:smooth_quartz_stairs {half: "bottom", waterlogged: "false", shape: "outer_left", facing: "west"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "outer_right", facing: "east"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "outer_left", facing: "west"}
+minecraft:black_stained_glass_pane {east: "true", waterlogged: "false", south: "true", north: "false", west: "false"}
+minecraft:smooth_quartz_slab {waterlogged: "false", type: "bottom"}
+minecraft:black_stained_glass_pane {east: "true", waterlogged: "false", south: "true", north: "false", west: "true"}
+minecraft:smooth_quartz_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "east"}
+minecraft:smooth_quartz_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "west"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "east"}
+minecraft:black_stained_glass_pane {east: "false", waterlogged: "false", south: "true", north: "true", west: "false"}
+minecraft:smooth_quartz_slab {waterlogged: "false", type: "top"}
+minecraft:oak_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "east"}
+minecraft:cauldron {level: "3"}
+minecraft:quartz_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "north"}
+minecraft:iron_trapdoor {half: "bottom", waterlogged: "false", powered: "false", facing: "south", open: "false"}
+minecraft:potted_oxeye_daisy no properties
+minecraft:smooth_quartz_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "north"}
+minecraft:smooth_quartz_stairs {half: "bottom", waterlogged: "false", shape: "inner_left", facing: "east"}
+minecraft:black_stained_glass_pane {east: "false", waterlogged: "false", south: "false", north: "false", west: "true"}
+minecraft:black_stained_glass_pane {east: "false", waterlogged: "false", south: "true", north: "true", west: "true"}
+minecraft:oak_fence {east: "true", waterlogged: "false", south: "false", north: "false", west: "false"}
+minecraft:oak_fence {east: "false", waterlogged: "false", south: "false", north: "false", west: "true"}
+minecraft:black_carpet no properties
+minecraft:black_stained_glass_pane {east: "true", waterlogged: "false", south: "false", north: "true", west: "true"}
+minecraft:smooth_quartz_stairs {half: "bottom", waterlogged: "false", shape: "outer_right", facing: "north"}
+minecraft:smooth_quartz_stairs {half: "bottom", waterlogged: "false", shape: "outer_left", facing: "north"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "outer_right", facing: "north"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "north"}
+minecraft:smooth_quartz_stairs {half: "top", waterlogged: "false", shape: "outer_right", facing: "west"}
+minecraft:black_stained_glass_pane {east: "true", waterlogged: "false", south: "false", north: "true", west: "false"}
+minecraft:oak_slab {waterlogged: "false", type: "bottom"}
+minecraft:oak_wall_sign {waterlogged: "false", facing: "north"}
+minecraft:barrel {facing: "east", open: "false"}
+minecraft:oak_wall_sign {waterlogged: "false", facing: "east"}
+minecraft:oak_wall_sign {waterlogged: "false", facing: "south"}
+minecraft:oak_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "south"}
+minecraft:iron_bars {east: "true", waterlogged: "false", south: "false", north: "false", west: "false"}
+minecraft:iron_bars {east: "true", waterlogged: "false", south: "false", north: "false", west: "true"}
+minecraft:iron_bars {east: "false", waterlogged: "false", south: "false", north: "false", west: "true"}
+minecraft:stone_brick_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "south"}
+minecraft:scaffolding {waterlogged: "false", distance: "0", bottom: "false"}
+minecraft:cobblestone_stairs {half: "bottom", waterlogged: "false", shape: "outer_left", facing: "south"}
+minecraft:cobblestone_stairs {half: "bottom", waterlogged: "false", shape: "outer_left", facing: "west"}
+minecraft:iron_bars {east: "false", waterlogged: "false", south: "true", north: "false", west: "false"}
+minecraft:stone_brick_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "east"}
+minecraft:stone_brick_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "west"}
+minecraft:stone_brick_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "west"}
+minecraft:oak_fence_gate {in_wall: "false", powered: "false", facing: "west", open: "false"}
+minecraft:iron_bars {east: "false", waterlogged: "false", south: "true", north: "true", west: "false"}
+minecraft:oak_slab {waterlogged: "false", type: "top"}
+minecraft:iron_bars {east: "false", waterlogged: "false", south: "false", north: "true", west: "false"}
+minecraft:anvil {facing: "west"}
+minecraft:cobblestone_stairs {half: "bottom", waterlogged: "false", shape: "outer_left", facing: "east"}
+minecraft:stone_brick_stairs {half: "bottom", waterlogged: "false", shape: "straight", facing: "north"}
+minecraft:cobblestone_stairs {half: "bottom", waterlogged: "false", shape: "outer_right", facing: "west"}
+minecraft:stone_brick_stairs {half: "top", waterlogged: "false", shape: "straight", facing: "north"}
