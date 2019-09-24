@@ -123,3 +123,12 @@ def create_nbt_from_3d(blocks, epoch, palette):
     structure_file = StructureFile(new_structure)
     structure_file.save('output/schem{}-{}.nbt'.format(epoch, 0))
 
+def load_dataset_palette(path):
+    structures = os.listdir(path)
+    paletteArr = []
+    for building in structures:
+        blockArr = np.load(path + '/' + building)
+        print(blockArr.shape)
+
+
+
