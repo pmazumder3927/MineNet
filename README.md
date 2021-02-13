@@ -2,6 +2,7 @@
 
 A GAN for generating minecraft structures.
 Trains on and generates Minecraft structure files(.NBT).
+
 Created By
 ===============
 * __[Pramit Mazumder](https://github.com/pmazumder3927)__
